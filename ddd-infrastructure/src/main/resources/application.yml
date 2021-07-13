@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@103.110.136.201:8090/orcl
+    username: dddtest
+    password: dddtest
+
+mybatis:
+  #mapper.xml
+  mapper-locations: classpath:mapping/*.xml
+  #class
+  type-aliases-package: cn.moexc.ddd.infrastructure.dao

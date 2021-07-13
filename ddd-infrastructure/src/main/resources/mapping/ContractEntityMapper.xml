@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moexc.ddd.infrastructure.dao.ContractEntityMapper">
+  <resultMap id="BaseResultMap" type="cn.moexc.ddd.domain.entity.ContractEntity">
+    <!--@mbg.generated-->
+    <!--@Table CONTRACT-->
+    <id column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUMBER" jdbcType="VARCHAR" property="contractNumber" />
+    <result column="CONTRACT_PRICE" jdbcType="DECIMAL" property="contractPrice" />
+    <result column="CONTRACT_WEIGHT" jdbcType="DECIMAL" property="contractWeight" />
+    <result column="CONTRACT_PAY_AMOUNT" jdbcType="DECIMAL" property="contractPayAmount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    CONTRACT_ID, CONTRACT_NUMBER, CONTRACT_PRICE, CONTRACT_WEIGHT, CONTRACT_PAY_AMOUNT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from CONTRACT
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from CONTRACT
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.moexc.ddd.domain.entity.ContractEntity">
+    <!--@mbg.generated-->
+    insert into CONTRACT (CONTRACT_ID, CONTRACT_NUMBER, CONTRACT_PRICE, 
+      CONTRACT_WEIGHT, CONTRACT_PAY_AMOUNT)
+    values (#{contractId,jdbcType=VARCHAR}, #{contractNumber,jdbcType=VARCHAR}, #{contractPrice,jdbcType=DECIMAL}, 
+      #{contractWeight,jdbcType=DECIMAL}, #{contractPayAmount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.moexc.ddd.domain.entity.ContractEntity">
+    <!--@mbg.generated-->
+    insert into CONTRACT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="contractNumber != null">
+        CONTRACT_NUMBER,
+      </if>
+      <if test="contractPrice != null">
+        CONTRACT_PRICE,
+      </if>
+      <if test="contractWeight != null">
+        CONTRACT_WEIGHT,
+      </if>
+      <if test="contractPayAmount != null">
+        CONTRACT_PAY_AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNumber != null">
+        #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPrice != null">
+        #{contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="contractWeight != null">
+        #{contractWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="contractPayAmount != null">
+        #{contractPayAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.moexc.ddd.domain.entity.ContractEntity">
+    <!--@mbg.generated-->
+    update CONTRACT
+    <set>
+      <if test="contractNumber != null">
+        CONTRACT_NUMBER = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPrice != null">
+        CONTRACT_PRICE = #{contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="contractWeight != null">
+        CONTRACT_WEIGHT = #{contractWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="contractPayAmount != null">
+        CONTRACT_PAY_AMOUNT = #{contractPayAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.moexc.ddd.domain.entity.ContractEntity">
+    <!--@mbg.generated-->
+    update CONTRACT
+    set CONTRACT_NUMBER = #{contractNumber,jdbcType=VARCHAR},
+      CONTRACT_PRICE = #{contractPrice,jdbcType=DECIMAL},
+      CONTRACT_WEIGHT = #{contractWeight,jdbcType=DECIMAL},
+      CONTRACT_PAY_AMOUNT = #{contractPayAmount,jdbcType=DECIMAL}
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+</mapper>
