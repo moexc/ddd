@@ -10,3 +10,6 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
   #class
   type-aliases-package: cn.moexc.ddd.infrastructure.dao
+
+storage:
+  type: ram

@@ -4,8 +4,8 @@ import cn.moexc.ddd.domain.contract.ContractAR;
 import cn.moexc.ddd.domain.contract.ContractRepository;
 import cn.moexc.ddd.domain.entity.ContractEntity;
 import cn.moexc.ddd.domain.entity.PaymentRecordsEntity;
-import cn.moexc.ddd.infrastructure.dao.ContractEntityMapper;
-import cn.moexc.ddd.infrastructure.dao.PaymentRecordsEntityMapper;
+import cn.moexc.ddd.infrastructure.storage.ContractEntityStorage;
+import cn.moexc.ddd.infrastructure.storage.PaymentRecordsEntityStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,33 +14,33 @@ import java.util.List;
 @Repository
 public class ContractRepositoryImpl implements ContractRepository {
 
-    private final ContractEntityMapper contractEntityMapper;
-    private final PaymentRecordsEntityMapper paymentRecordsEntityMapper;
+    private final ContractEntityStorage contractEntityStorage;
+    private final PaymentRecordsEntityStorage paymentRecordsEntityStorage;
 
     @Autowired
-    public ContractRepositoryImpl(ContractEntityMapper contractEntityMapper, PaymentRecordsEntityMapper paymentRecordsEntityMapper) {
-        this.contractEntityMapper = contractEntityMapper;
-        this.paymentRecordsEntityMapper = paymentRecordsEntityMapper;
+    public ContractRepositoryImpl(ContractEntityStorage contractEntityStorage, PaymentRecordsEntityStorage paymentRecordsEntityStorage) {
+        this.contractEntityStorage = contractEntityStorage;
+        this.paymentRecordsEntityStorage = paymentRecordsEntityStorage;
     }
 
     @Override
     public ContractAR byId(String contractId) {
-        ContractEntity contractEntity = contractEntityMapper.selectByPrimaryKey(contractId);
-        List<PaymentRecordsEntity> payDetailEntities = paymentRecordsEntityMapper.selectByContractId(contractId);
+        ContractEntity contractEntity = contractEntityStorage.selectByPrimaryKey(contractId);
+        List<PaymentRecordsEntity> payDetailEntities = paymentRecordsEntityStorage.selectByContractId(contractId);
         return new ContractAR(contractEntity, payDetailEntities);
     }
 
     @Override
     public void save(ContractAR contractAR) {
         ContractEntity contractEntity = contractAR.getContractEntity();
-        contractEntityMapper.updateByPrimaryKeySelective(contractEntity);
+        contractEntityStorage.updateByPrimaryKeySelective(contractEntity);
 
         List<PaymentRecordsEntity> recordsEntities = contractAR.getPayDetailEntites();
         recordsEntities.forEach(recordEntity -> {
-            if (paymentRecordsEntityMapper.selectByPrimaryKey(recordEntity.getPaymentId()) == null){
-                paymentRecordsEntityMapper.insertSelective(recordEntity);
+            if (paymentRecordsEntityStorage.selectByPrimaryKey(recordEntity.getPaymentId()) == null){
+                paymentRecordsEntityStorage.insertSelective(recordEntity);
             }else {
-                paymentRecordsEntityMapper.updateByPrimaryKeySelective(recordEntity);
+                paymentRecordsEntityStorage.updateByPrimaryKeySelective(recordEntity);
             }
         });
     }
