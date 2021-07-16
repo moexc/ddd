@@ -1,7 +1,7 @@
 package cn.moexc.ddd.infrastructure.repository;
 
-import cn.moexc.ddd.domain.aggregate.contract.ContractAR;
-import cn.moexc.ddd.domain.aggregate.contract.ContractRepository;
+import cn.moexc.ddd.domain.contract.ContractAR;
+import cn.moexc.ddd.domain.contract.ContractRepository;
 import cn.moexc.ddd.domain.entity.ContractEntity;
 import cn.moexc.ddd.domain.entity.PaymentRecordsEntity;
 import cn.moexc.ddd.infrastructure.dao.ContractEntityMapper;

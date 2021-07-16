@@ -1,7 +1,5 @@
 package cn.moexc.ddd.domain.entity;
 
-import cn.moexc.ddd.domain.aggregate.contract.PayDetail;
-
 import java.math.BigDecimal;
 import java.util.Date;
 

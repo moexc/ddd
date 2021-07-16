@@ -23,8 +23,9 @@ public class OrderTest {
     @Test
     public void pay(){
         PayCmd payCmd = new PayCmd();
+        payCmd.setUserId("1");
         payCmd.setContractId("1");
-        payCmd.setMoney(new BigDecimal("100"));
+        payCmd.setMoney(new BigDecimal("400"));
         contractService.pay(payCmd);
     }
 }

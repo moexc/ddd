@@ -1,4 +1,4 @@
-package cn.moexc.ddd.domain.aggregate.contract;
+package cn.moexc.ddd.domain.contract;
 
 import cn.moexc.ddd.domain.entity.ContractEntity;
 import cn.moexc.ddd.domain.entity.PaymentRecordsEntity;

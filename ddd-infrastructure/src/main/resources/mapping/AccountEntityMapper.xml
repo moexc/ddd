@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moexc.ddd.infrastructure.dao.AccountEntityMapper">
+  <resultMap id="BaseResultMap" type="cn.moexc.ddd.domain.entity.AccountEntity">
+    <!--@mbg.generated-->
+    <!--@Table ACCOUNT-->
+    <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_PWD" jdbcType="VARCHAR" property="userPwd" />
+    <result column="USER_BALANCE" jdbcType="DECIMAL" property="userBalance" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    USER_ID, USER_NAME, USER_PWD, USER_BALANCE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from ACCOUNT
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from ACCOUNT
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.moexc.ddd.domain.entity.AccountEntity">
+    <!--@mbg.generated-->
+    insert into ACCOUNT (USER_ID, USER_NAME, USER_PWD, 
+      USER_BALANCE)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userBalance,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.moexc.ddd.domain.entity.AccountEntity">
+    <!--@mbg.generated-->
+    insert into ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userPwd != null">
+        USER_PWD,
+      </if>
+      <if test="userBalance != null">
+        USER_BALANCE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userBalance != null">
+        #{userBalance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.moexc.ddd.domain.entity.AccountEntity">
+    <!--@mbg.generated-->
+    update ACCOUNT
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userBalance != null">
+        USER_BALANCE = #{userBalance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.moexc.ddd.domain.entity.AccountEntity">
+    <!--@mbg.generated-->
+    update ACCOUNT
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      USER_BALANCE = #{userBalance,jdbcType=DECIMAL}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

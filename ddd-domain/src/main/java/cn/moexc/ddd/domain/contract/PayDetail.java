@@ -1,4 +1,4 @@
-package cn.moexc.ddd.domain.aggregate.contract;
+package cn.moexc.ddd.domain.contract;
 
 
 
